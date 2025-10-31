@@ -714,7 +714,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"dnnhU":[function(require,module,exports,__globalThis) {
-//where 3d happens
+//where 3D happens
 var _three = require("three");
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 //import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -723,6 +723,19 @@ const renderer = new _three.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 //injecting the 3d space into the body of the html
 document.body.appendChild(renderer.domElement);
+const scene = new _three.Scene();
+const camera = new _three.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const axesHelper = new _three.AxesHelper(5);
+scene.add(axesHelper);
+camera.position.set(0, 2, 10);
+//creating a cube
+const geometry = new _three.BoxGeometry();
+const material = new _three.MeshBasicMaterial({
+    color: 0x00ff00
+});
+const cube = new _three.Mesh(geometry, material);
+scene.add(cube);
+renderer.render(scene, camera);
 
 },{"three":"dsoTF"}],"dsoTF":[function(require,module,exports,__globalThis) {
 /**
