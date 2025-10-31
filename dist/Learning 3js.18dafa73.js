@@ -733,9 +733,14 @@ const geometry = new _three.BoxGeometry();
 const material = new _three.MeshBasicMaterial({
     color: 0x00ff00
 });
-const cube = new _three.Mesh(geometry, material);
-scene.add(cube);
-renderer.render(scene, camera);
+const box = new _three.Mesh(geometry, material);
+scene.add(box);
+function animate(time) {
+    box.rotation.x += 0.01;
+    box.rotation.y += 0.01;
+    renderer.render(scene, camera);
+}
+renderer.setAnimationLoop(animate);
 
 },{"three":"dsoTF"}],"dsoTF":[function(require,module,exports,__globalThis) {
 /**

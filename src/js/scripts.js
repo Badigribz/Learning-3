@@ -28,7 +28,12 @@ camera.position.set(0, 2, 10);
 //creating a cube
 const geometry = new THREE.BoxGeometry();
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-const cube = new THREE.Mesh(geometry, material);
-scene.add(cube);
+const box = new THREE.Mesh(geometry, material);
+scene.add(box);
 
-renderer.render(scene, camera); 
+function animate(time) {
+    box.rotation.x += 0.01;
+    box.rotation.y += 0.01;    
+    renderer.render(scene, camera); 
+}
+renderer.setAnimationLoop(animate);
