@@ -67,10 +67,26 @@ gui.addColor(options, 'sphereColor').onChange(function(e){
     sphere.material.color.set(e);
 });
 
-//box rotation
-function animate(time) {
-    box.rotation.x += 0.01;
-    box.rotation.y += 0.01;    
-    renderer.render(scene, camera); 
+//sphere  bouncing functionality
+let step = 0;
+let speed = 0.01;
+//animation function
+function animate(time){
+   box.rotation.x = time / 1000;   
+   box.rotation.y = time / 1000; 
+
+    step += speed;
+    //sphere.position.x = 10 * Math.cos(step);
+    sphere.position.y = 10 * Math.abs(Math.sin(step));
+    renderer.render(scene, camera);
 }
+
 renderer.setAnimationLoop(animate);
+
+//box rotation
+// function animate(time) {
+//     box.rotation.x += 0.01;
+//     box.rotation.y += 0.01;    
+//     renderer.render(scene, camera); 
+// }
+// renderer.setAnimationLoop(animate);
