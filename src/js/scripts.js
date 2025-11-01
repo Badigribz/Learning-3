@@ -48,7 +48,12 @@ plane.rotation.x = -0.5 * Math.PI;
 const gridHelper = new THREE.GridHelper(30);
 scene.add(gridHelper);
 
-
+//sphere addition to the 3d space
+const sphereGeometry = new THREE.SphereGeometry(4, 50, 50);
+const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true });
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+scene.add(sphere);
+sphere.position.set(-10, 10, 0);
  
 //box rotation
 function animate(time) {
