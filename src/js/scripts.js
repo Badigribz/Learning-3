@@ -2,7 +2,7 @@
 import * as THREE from 'three';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-
+import * as dat from 'dat.gui';
 const renderer = new THREE.WebGLRenderer();
 
 //defining size of the space on page
@@ -54,7 +54,19 @@ const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe:
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 sphere.position.set(-10, 10, 0);
- 
+
+
+//dat gui to alter colour properties
+const gui = new dat.GUI();
+
+const options = {
+    sphereColor: '#ffea00',
+    wireframe: false,   };
+
+gui.addColor(options, 'sphereColor').onChange(function(e){
+    sphere.material.color.set(e);
+});
+
 //box rotation
 function animate(time) {
     box.rotation.x += 0.01;
