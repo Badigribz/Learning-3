@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-      "start": "parcel src/index.html",
-      "build": "parcel build src/index.html"
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "dat.gui": "^0.7.9",
     "three": "^0.180.0"
   },
   "devDependencies": {
