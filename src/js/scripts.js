@@ -35,12 +35,12 @@ orbit.update();
 
 //creating a cube
 const geometry = new THREE.BoxGeometry();
-const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
 const box = new THREE.Mesh(geometry, material);
 scene.add(box);
 
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
-const planeMaterial = new THREE.MeshBasicMaterial({
+const planeMaterial = new THREE.MeshStandardMaterial({
     color: 0xffffff,
     side: THREE.DoubleSide
 });
@@ -55,7 +55,7 @@ scene.add(gridHelper);
 
 //sphere addition to the 3d space
 const sphereGeometry = new THREE.SphereGeometry(4, 50, 50);
-const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe: true });
+const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x0000ff, wireframe: true });
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 sphere.position.set(-10, 10, 0);
@@ -95,13 +95,19 @@ const gui = new dat.GUI();
 const options = {
     sphereColor: '#ffea00',
     wireframe: false,  
-    speed: 0.01};
-
+    speed: 0.01,
+    angle: 0.2,
+    penumbra: 0,
+    intensity: 1
+};
 gui.addColor(options, 'sphereColor').onChange(function(e){
     sphere.material.color.set(e);
 });
 
 gui.add(options, 'speed', 0, 0.1);
+gui.add(options, 'angle', 0, 1);
+gui.add(options, 'penumbra', 0, 1);
+gui.add(options, 'intensity', 0, 1);
 //sphere  bouncing functionality
 let step = 0;
 // let speed = 0.01;
@@ -113,6 +119,12 @@ function animate(time){
     step += options. speed;
     //sphere.position.x = 10 * Math.cos(step);
     sphere.position.y = 10 * Math.abs(Math.sin(step));
+
+    spotLight.angle = options.angle;
+    spotLight.penumbra = options.penumbra;
+    spotLight.intensity = options.intensity;
+    spotLightHelper.update();
+
     renderer.render(scene, camera);
 }
 
