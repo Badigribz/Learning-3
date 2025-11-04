@@ -55,6 +55,19 @@ const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 sphere.position.set(-10, 10, 0);
 
+// adding light to the scene
+const ambientLight = new THREE.AmbientLight(0x333333);
+scene.add(ambientLight);
+
+// directional light
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+scene.add(directionalLight);
+directionalLight.position.set(-30, 50, 0);
+directionalLight.castShadow = true;
+
+const dLightHelper = new THREE.DirectionalLightHelper(directionalLight, 5);
+scene.add(dLightHelper);
+
 
 //dat gui to alter colour properties
 const gui = new dat.GUI();
@@ -77,7 +90,7 @@ function animate(time){
    box.rotation.x = time / 1000;   
    box.rotation.y = time / 1000; 
 
-    step += options.speed;
+    step += options. speed;
     //sphere.position.x = 10 * Math.cos(step);
     sphere.position.y = 10 * Math.abs(Math.sin(step));
     renderer.render(scene, camera);
