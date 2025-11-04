@@ -5,6 +5,10 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
 const renderer = new THREE.WebGLRenderer();
 
+//ctaering to shadows in the scene
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
 //defining size of the space on page
 renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -44,6 +48,7 @@ const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 //plane.rotation.x = Math.PI / 2;
 scene.add(plane);
 plane.rotation.x = -0.5 * Math.PI;
+plane.receiveShadow = true;
 
 const gridHelper = new THREE.GridHelper(30);
 scene.add(gridHelper);
@@ -54,6 +59,7 @@ const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff, wireframe:
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 sphere.position.set(-10, 10, 0);
+sphere.castShadow = true;
 
 // adding light to the scene
 const ambientLight = new THREE.AmbientLight(0x333333);
@@ -64,9 +70,13 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
 scene.add(directionalLight);
 directionalLight.position.set(-30, 50, 0);
 directionalLight.castShadow = true;
+directionalLight.shadow.camera.bottom = -12;
 
 const dLightHelper = new THREE.DirectionalLightHelper(directionalLight, 5);
 scene.add(dLightHelper);
+
+const dLightShadowHelper = new THREE.CameraHelper(directionalLight.shadow.camera);
+scene.add(dLightShadowHelper);  
 
 
 //dat gui to alter colour properties
