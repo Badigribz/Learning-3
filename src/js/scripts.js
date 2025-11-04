@@ -79,6 +79,16 @@ const dLightShadowHelper = new THREE.CameraHelper(directionalLight.shadow.camera
 scene.add(dLightShadowHelper);  
 
 
+// spotlight
+const spotLight = new THREE.SpotLight(0xffffff);
+scene.add(spotLight);
+spotLight.position.set(-100, 100, 0);
+spotLight.castShadow = true;
+spotLight.angle = 0.2;
+
+const spotLightHelper = new THREE.SpotLightHelper(spotLight);
+scene.add(spotLightHelper);
+
 //dat gui to alter colour properties
 const gui = new dat.GUI();
 
