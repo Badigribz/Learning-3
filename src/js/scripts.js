@@ -89,6 +89,9 @@ spotLight.angle = 0.2;
 const spotLightHelper = new THREE.SpotLightHelper(spotLight);
 scene.add(spotLightHelper);
 
+//adding fog to the scene
+scene.fog = new THREE.FogExp2(0xffffff, 0.015);       
+
 //dat gui to alter colour properties
 const gui = new dat.GUI();
 
