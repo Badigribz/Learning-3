@@ -158,11 +158,3 @@ function animate(time){
 }
 
 renderer.setAnimationLoop(animate);
-
-//box rotation
-// function animate(time) {
-//     box.rotation.x += 0.01;
-//     box.rotation.y += 0.01;    
-//     renderer.render(scene, camera); 
-// }
-// renderer.setAnimationLoop(animate);
