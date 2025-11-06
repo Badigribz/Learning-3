@@ -3,6 +3,10 @@ import * as THREE from 'three';
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
+
+//import for image suppposed to work but didnt
+//import badi from '../img/badi.jpg';
+
 const renderer = new THREE.WebGLRenderer();
 
 //ctaering to shadows in the scene
@@ -94,6 +98,25 @@ scene.fog = new THREE.FogExp2(0xffffff, 0.015);
 
 //setting background colour to match fog
 //renderer.setClearColor(0xFFEA00);
+
+
+
+//attempt to add image as background - didnt work
+
+// const textureLoader = new THREE.TextureLoader();
+// console.log('Resolved image URL:', badiUrl);
+// scene.background = textureLoader.load(badiUrl,
+//   () => console.log('Background loaded successfully!'),
+//   undefined,
+//   err => console.error('Error loading background:', err)
+// );
+
+// This works though
+
+// const textureLoader = new THREE.TextureLoader();
+// const bg = textureLoader.load(new URL('../img/stars.jpg', import.meta.url).href);
+// console.log(new URL('../img/airjordan.jpg', import.meta.url))
+// scene.background = bg;
 
 //dat gui to alter colour properties
 const gui = new dat.GUI();
