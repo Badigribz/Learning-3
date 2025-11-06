@@ -90,7 +90,10 @@ const spotLightHelper = new THREE.SpotLightHelper(spotLight);
 scene.add(spotLightHelper);
 
 //adding fog to the scene
-scene.fog = new THREE.FogExp2(0xffffff, 0.015);       
+scene.fog = new THREE.FogExp2(0xffffff, 0.015);  
+
+//setting background colour to match fog
+//renderer.setClearColor(0xFFEA00);
 
 //dat gui to alter colour properties
 const gui = new dat.GUI();
