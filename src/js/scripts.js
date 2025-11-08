@@ -142,6 +142,7 @@ let step = 0;
 
 // let speed = 0.01;
 //animation function
+
 function animate(time){
    box.rotation.x = time / 1000;   
    box.rotation.y = time / 1000; 
