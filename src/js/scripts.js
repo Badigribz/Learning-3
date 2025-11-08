@@ -139,6 +139,7 @@ gui.add(options, 'penumbra', 0, 1);
 gui.add(options, 'intensity', 0, 1);
 //sphere  bouncing functionality
 let step = 0;
+
 // let speed = 0.01;
 //animation function
 function animate(time){
