@@ -126,7 +126,19 @@ const box2Material = new THREE.MeshBasicMaterial({
 });
 const box2 = new THREE.Mesh(box2Geometry, box2Material);
 scene.add(box2);
-box2.position.set(15,2,0);   
+box2.position.set(0,15,10);   
+
+
+// const plane2Geometry = new THREE.PlaneGeometry(20, 20, 20, 20 );
+// const plane2Material = new THREE.MeshStandardMaterial({
+//     color: 0xffffff,
+//     side: THREE.DoubleSide,
+// });
+// const plane2 = new THREE.Mesh(plane2Geometry, plane2Material);
+// scene.add(plane2);
+// plane2.rotation.x = -0.5 * Math.PI;
+// plane2.position.set(10, 0, 0); 
+
 
 //dat gui to alter colour properties
 const gui = new dat.GUI();
@@ -159,6 +171,9 @@ document.addEventListener('mousemove', function(e){
 
 const raycaster = new THREE.Raycaster();
 
+const sphereId = sphere.id;
+box2.name = 'box2';
+
 // let speed = 0.01;
 //animation function
 
@@ -179,6 +194,16 @@ function animate(time){
     raycaster.setFromCamera(mousePosition, camera);
     const intersects = raycaster.intersectObjects(scene.children);
     //console.log(intersects);
+
+    for (let i=0; i<intersects.length; i++){
+        if (intersects[i].object.id === sphereId){
+            intersects[i].object.material.color.set(0xff0000);
+        }
+        if (intersects[i].object.name === 'box2'){
+            intersects[i].object.rotation.x += 0.1;
+            intersects[i].object.rotation.y += 0.1;
+        } 
+    }
 
     renderer.render(scene, camera);
 }
