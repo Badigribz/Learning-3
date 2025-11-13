@@ -118,7 +118,7 @@ const bg = textureLoader.load(new URL('../img/stars.jpg', import.meta.url).href)
 console.log(new URL('../img/stars.jpg', import.meta.url))
 scene.background = bg;
 
-
+//adding texture to a box
 const box2Geometry = new THREE.BoxGeometry(4,4,4);
 const box2Material = new THREE.MeshBasicMaterial({
     //color: 0x00ff00,
