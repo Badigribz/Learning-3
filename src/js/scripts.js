@@ -113,10 +113,20 @@ scene.fog = new THREE.FogExp2(0xffffff, 0.015);
 
 // This works though
 
-// const textureLoader = new THREE.TextureLoader();
-// const bg = textureLoader.load(new URL('../img/stars.jpg', import.meta.url).href);
-// console.log(new URL('../img/airjordan.jpg', import.meta.url))
-// scene.background = bg;
+const textureLoader = new THREE.TextureLoader();
+const bg = textureLoader.load(new URL('../img/stars.jpg', import.meta.url).href);
+console.log(new URL('../img/stars.jpg', import.meta.url))
+scene.background = bg;
+
+
+const box2Geometry = new THREE.BoxGeometry(4,4,4);
+const box2Material = new THREE.MeshBasicMaterial({
+    //color: 0x00ff00,
+    map: textureLoader.load(new URL('../img/badi.jpg', import.meta.url).href)
+});
+const box2 = new THREE.Mesh(box2Geometry, box2Material);
+scene.add(box2);
+box2.position.set(15,2,0);   
 
 //dat gui to alter colour properties
 const gui = new dat.GUI();
