@@ -150,6 +150,15 @@ gui.add(options, 'intensity', 0, 1);
 //sphere  bouncing functionality
 let step = 0;
 
+const mousePosition = new THREE.Vector2();
+
+document.addEventListener('mousemove', function(e){
+    mousePosition.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mousePosition.y = - (e.clientY / window.innerHeight) * 2 + 1;
+});
+
+const raycaster = new THREE.Raycaster();
+
 // let speed = 0.01;
 //animation function
 
@@ -165,6 +174,11 @@ function animate(time){
     spotLight.penumbra = options.penumbra;
     spotLight.intensity = options.intensity;
     spotLightHelper.update();
+
+    //raycaster
+    raycaster.setFromCamera(mousePosition, camera);
+    const intersects = raycaster.intersectObjects(scene.children);
+    //console.log(intersects);
 
     renderer.render(scene, camera);
 }
